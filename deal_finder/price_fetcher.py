@@ -2,22 +2,9 @@
 Price fetcher — wraps shoppingcomparisoncli (shoppingagent) for current prices.
 
 Imports shoppingagent.aggregator directly (no subprocess).
-Expects shoppingagent to be installed as editable package or available at SHOPPING_CLI_PATH.
+Expects shoppingcomparisoncli to be installed as a package dependency.
 """
-import sys
-import os
-from pathlib import Path
 from dataclasses import dataclass
-
-
-def _ensure_shopping_cli_on_path():
-    path = os.getenv("SHOPPING_CLI_PATH", "../shoppingagent")
-    resolved = Path(path).resolve()
-    if str(resolved) not in sys.path and resolved.exists():
-        sys.path.insert(0, str(resolved))
-
-
-_ensure_shopping_cli_on_path()
 
 
 @dataclass

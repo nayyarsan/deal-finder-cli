@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Deal intelligence engine — watchlist, price tracking, and buy/hold verdicts"
 requires-python = ">=3.11"
 dependencies = [
+    "shoppingcomparisoncli @ git+https://github.com/nayyarsan/shoppingcomparisoncli.git",
     "rapidfuzz>=3.6",
     "httpx>=0.27",
     "pydantic>=2.6",
