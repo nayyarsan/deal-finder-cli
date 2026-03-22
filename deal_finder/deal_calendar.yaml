@@ -1,0 +1,44 @@
+electronics:
+  - event: Black Friday
+    typical_discount_pct: 25
+    window_start: "11-20"
+    window_end: "11-30"
+  - event: Prime Day
+    typical_discount_pct: 20
+    window_start: "07-08"
+    window_end: "07-16"
+  - event: Back to School
+    typical_discount_pct: 10
+    window_start: "07-15"
+    window_end: "08-31"
+  - event: Cyber Monday
+    typical_discount_pct: 20
+    window_start: "12-01"
+    window_end: "12-03"
+
+appliances:
+  - event: Labor Day
+    typical_discount_pct: 20
+    window_start: "08-28"
+    window_end: "09-02"
+  - event: Black Friday
+    typical_discount_pct: 15
+    window_start: "11-20"
+    window_end: "11-30"
+  - event: Presidents Day
+    typical_discount_pct: 15
+    window_start: "02-15"
+    window_end: "02-20"
+
+grocery:
+  note: "No strong seasonal pattern. Rely on Slickdeals + Flipp signals only."
+
+general:
+  - event: Black Friday
+    typical_discount_pct: 15
+    window_start: "11-20"
+    window_end: "11-30"
+  - event: Prime Day
+    typical_discount_pct: 10
+    window_start: "07-08"
+    window_end: "07-16"

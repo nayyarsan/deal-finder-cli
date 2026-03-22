@@ -1,0 +1,8 @@
+.env
+data/watchlist.db
+data/alerts.json
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+*.egg-info/
