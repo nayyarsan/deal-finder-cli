@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-from deal_finder.watchlist import WatchlistDB, WatchlistItem, PriceRecord
+from deal_finder.watchlist import WatchlistItem, PriceRecord
 from deal_finder.price_fetcher import PriceResult
 
 CALENDAR_PATH = Path(__file__).parent / "deal_calendar.yaml"
