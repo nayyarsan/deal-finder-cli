@@ -1,0 +1,46 @@
+name: Shopping Tracker
+
+on:
+  schedule:
+    - cron: "0 15 * * *"  # 08:00 PT (UTC-7)
+  workflow_dispatch:
+
+jobs:
+  run-tracker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Fetch prices and run deal agent
+        env:
+          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
+          BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          OLLAMA_BASE_URL: ${{ vars.OLLAMA_BASE_URL }}
+        run: python -m deal_finder.pipeline
+
+      - name: Commit alerts to output branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin output 2>/dev/null || git checkout --orphan output
+          git checkout output 2>/dev/null || true
+          cp data/alerts.json alerts.json 2>/dev/null || true
+          git add alerts.json
+          git diff --cached --quiet || git commit -m "chore: update deal alerts $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push origin output
